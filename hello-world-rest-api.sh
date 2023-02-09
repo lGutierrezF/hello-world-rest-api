@@ -1,6 +1,6 @@
 #! /bin/sh
 # Package the program
-mvn package
+mvn verify
 
 #Build docker image
 docker build -t springio/gs-spring-boot-docker .
