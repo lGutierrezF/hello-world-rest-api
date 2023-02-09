@@ -12,14 +12,21 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.ResponseEntity;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class SpringBootDockerApplicationTests {
 	@Autowired
 	private SpringBootDockerApplication controller;
-
+	@LocalServerPort
+	private int port;
+	@Autowired
+	private TestRestTemplate restTemplate;
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -27,7 +34,11 @@ class SpringBootDockerApplicationTests {
 	void contextLoads() throws Exception{
 		assertThat(controller).isNotNull();
 	}
-
+	@Test
+	public void greetingShouldReturnDefaultMessage() throws Exception {
+		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
+				String.class)).contains("Hello Docker World");
+	}
 	@Test
 	public void shouldReturnDefaultMessage() throws Exception {
 		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
