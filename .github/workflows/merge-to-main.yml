@@ -1,4 +1,4 @@
-name: Merge to main
+name: Merge to main branch.
 run-name: Performing merge to main branch
 on:
   merge_group:
