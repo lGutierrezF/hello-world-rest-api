@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: merge-to-main.sh
+      - run: bash merge-to-main.sh
 
   publish-docker-container:
     runs-on: ubuntu-latest
