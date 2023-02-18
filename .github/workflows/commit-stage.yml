@@ -1,5 +1,5 @@
 name: Commit Stage
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: Performing commit stage script
 on: [push]
 jobs:
   commit-stage:
@@ -9,4 +9,4 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: bash hello-world-rest-api.sh
+      - run: bash commit-stage.sh
