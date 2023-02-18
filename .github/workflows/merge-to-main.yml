@@ -22,11 +22,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
+          context: .
+          platforms: linux/arm64
           push: true
-          tags: lgutierrezfarinas/hello-world-rest-api:latest
-      - name: Update kubernetes deployment
-        uses: redhat-actions/oc-login@v1
-        with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
-          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-      - run: bash deploy-kubernetes.sh
+          tags: |
+            user/app:latest
