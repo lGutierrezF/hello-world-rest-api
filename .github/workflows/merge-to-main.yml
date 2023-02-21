@@ -7,9 +7,8 @@ on:
       - main
 jobs:
   merge-to-main-branch:
-    runs-on: eclipse-temurin:11
+    runs-on: ubuntu-latest
     steps:
-      - name: Integration test
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -20,11 +19,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push container to DockerHub
+      - name: Build and push docker image
         uses: docker/build-push-action@v4
         with:
-          context: .
-          platforms: linux/arm64
           push: true
-          tags: |
-            user/app:latest
+          tags: lgutierrezfarinas/hello-world-rest-api:latest
+      - name: Update kubernetes deployment
+        uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_NAMESPACE: l-gutierrez-dev
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+      - run: bash deploy-kubernetes.sh
