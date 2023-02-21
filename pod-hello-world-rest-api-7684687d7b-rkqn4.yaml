@@ -1,0 +1,265 @@
+﻿kind: Pod
+apiVersion: v1
+metadata:
+  generateName: hello-world-rest-api-7684687d7b-
+  annotations:
+    k8s.ovn.org/pod-networks: >-
+      {"default":{"ip_addresses":["10.128.19.73/23"],"mac_address":"0a:58:0a:80:13:49","gateway_ips":["10.128.18.1"],"ip_address":"10.128.19.73/23","gateway_ip":"10.128.18.1"}}
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "ovn-kubernetes",
+          "interface": "eth0",
+          "ips": [
+              "10.128.19.73"
+          ],
+          "mac": "0a:58:0a:80:13:49",
+          "default": true,
+          "dns": {}
+      }]
+    k8s.v1.cni.cncf.io/networks-status: |-
+      [{
+          "name": "ovn-kubernetes",
+          "interface": "eth0",
+          "ips": [
+              "10.128.19.73"
+          ],
+          "mac": "0a:58:0a:80:13:49",
+          "default": true,
+          "dns": {}
+      }]
+    kubernetes.io/limit-ranger: >-
+      LimitRanger plugin set: cpu, memory request for container rest; cpu,
+      memory limit for container rest
+    openshift.io/scc: restricted-v2
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+  resourceVersion: '398418516'
+  name: hello-world-rest-api-7684687d7b-rkqn4
+  uid: 64244b9c-4d63-4818-943d-24a2038cd46c
+  creationTimestamp: '2023-02-21T14:13:42Z'
+  managedFields:
+    - manager: ip-10-0-189-32
+      operation: Update
+      apiVersion: v1
+      time: '2023-02-21T14:13:42Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.ovn.org/pod-networks': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2023-02-21T14:13:42Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:generateName': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:pod-template-hash': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"7ed22f78-5c81-402a-9fe0-d247c11b6ca1"}': {}
+        'f:spec':
+          'f:containers':
+            'k:{"name":"rest"}':
+              .: {}
+              'f:image': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+              'f:ports':
+                .: {}
+                'k:{"containerPort":8080,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:protocol': {}
+              'f:resources': {}
+              'f:terminationMessagePath': {}
+              'f:terminationMessagePolicy': {}
+          'f:dnsPolicy': {}
+          'f:enableServiceLinks': {}
+          'f:restartPolicy': {}
+          'f:schedulerName': {}
+          'f:securityContext': {}
+          'f:terminationGracePeriodSeconds': {}
+    - manager: multus
+      operation: Update
+      apiVersion: v1
+      time: '2023-02-21T14:13:43Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.v1.cni.cncf.io/network-status': {}
+            'f:k8s.v1.cni.cncf.io/networks-status': {}
+      subresource: status
+    - manager: kubelet
+      operation: Update
+      apiVersion: v1
+      time: '2023-02-21T14:13:52Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:conditions':
+            'k:{"type":"ContainersReady"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Initialized"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Ready"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+          'f:containerStatuses': {}
+          'f:hostIP': {}
+          'f:phase': {}
+          'f:podIP': {}
+          'f:podIPs':
+            .: {}
+            'k:{"ip":"10.128.19.73"}':
+              .: {}
+              'f:ip': {}
+          'f:startTime': {}
+      subresource: status
+  namespace: l-gutierrez-dev
+  ownerReferences:
+    - apiVersion: apps/v1
+      kind: ReplicaSet
+      name: hello-world-rest-api-7684687d7b
+      uid: 7ed22f78-5c81-402a-9fe0-d247c11b6ca1
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: rest
+    pod-template-hash: 7684687d7b
+spec:
+  restartPolicy: Always
+  serviceAccountName: default
+  imagePullSecrets:
+    - name: default-dockercfg-bczhn
+  priority: -3
+  schedulerName: default-scheduler
+  enableServiceLinks: true
+  terminationGracePeriodSeconds: 30
+  preemptionPolicy: PreemptLowerPriority
+  nodeName: ip-10-0-150-108.ec2.internal
+  securityContext:
+    seLinuxOptions:
+      level: 's0:c77,c74'
+    fsGroup: 1006000000
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - resources:
+        limits:
+          cpu: '1'
+          memory: 1000Mi
+        requests:
+          cpu: 10m
+          memory: 64Mi
+      terminationMessagePath: /dev/termination-log
+      name: rest
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1006000000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: kube-api-access-rl6ms
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: 'lgutierrezfarinas/hello-world-rest-api:latest'
+  serviceAccount: default
+  volumes:
+    - name: kube-api-access-rl6ms
+      projected:
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              name: kube-root-ca.crt
+              items:
+                - key: ca.crt
+                  path: ca.crt
+          - downwardAPI:
+              items:
+                - path: namespace
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+          - configMap:
+              name: openshift-service-ca.crt
+              items:
+                - key: service-ca.crt
+                  path: service-ca.crt
+        defaultMode: 420
+  dnsPolicy: ClusterFirst
+  tolerations:
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/unreachable
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/memory-pressure
+      operator: Exists
+      effect: NoSchedule
+  priorityClassName: sandbox-users-pods
+status:
+  phase: Running
+  conditions:
+    - type: Initialized
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2023-02-21T14:13:42Z'
+    - type: Ready
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2023-02-21T14:13:52Z'
+    - type: ContainersReady
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2023-02-21T14:13:52Z'
+    - type: PodScheduled
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2023-02-21T14:13:42Z'
+  hostIP: 10.0.150.108
+  podIP: 10.128.19.73
+  podIPs:
+    - ip: 10.128.19.73
+  startTime: '2023-02-21T14:13:42Z'
+  containerStatuses:
+    - restartCount: 0
+      started: true
+      ready: true
+      name: rest
+      state:
+        running:
+          startedAt: '2023-02-21T14:13:52Z'
+      imageID: >-
+        docker.io/lgutierrezfarinas/hello-world-rest-api@sha256:86db80bcae10866e112dda4639f1d4bee6647a16cd862f2beb7b8511782bb7e9
+      image: 'docker.io/lgutierrezfarinas/hello-world-rest-api:latest'
+      lastState: {}
+      containerID: 'cri-o://d26fc0da98bf473d640b7f3aa3fd605a11f0ecdb8fe4f9b6d43d1bb01ab6e8eb'
+  qosClass: Burstable

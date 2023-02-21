@@ -1,0 +1,53 @@
+﻿kind: Service
+apiVersion: v1
+metadata:
+  name: hello-world-rest-api-service
+  namespace: l-gutierrez-dev
+  uid: fbea017c-387b-482b-91bf-b24a612b37c0
+  resourceVersion: '398636061'
+  creationTimestamp: '2023-02-21T14:17:18Z'
+  labels:
+    app: rest
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: v1
+      time: '2023-02-21T15:43:42Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:internalTrafficPolicy': {}
+          'f:ports':
+            .: {}
+            'k:{"port":8080,"protocol":"TCP"}':
+              .: {}
+              'f:name': {}
+              'f:port': {}
+              'f:protocol': {}
+              'f:targetPort': {}
+          'f:selector': {}
+          'f:sessionAffinity': {}
+          'f:type': {}
+spec:
+  clusterIP: 172.30.171.12
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  internalTrafficPolicy: Cluster
+  clusterIPs:
+    - 172.30.171.12
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: rest
+status:
+  loadBalancer: {}
