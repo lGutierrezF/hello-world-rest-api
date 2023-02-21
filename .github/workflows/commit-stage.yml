@@ -1,9 +1,11 @@
 name: Commit Stage
 run-name: Performing commit stage script
-on: [push]
+on:
+  pull_request:
+    types: [open]
 jobs:
   commit-stage:
-    runs-on: ubuntu-latest
+    runs-on: eclipse-temurin:11
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
