@@ -1,8 +1,6 @@
 name: Commit Stage
 run-name: Performing commit stage script
-on:
-  pull_request:
-    types: [opened]
+on: [pull_request]
 jobs:
   commit-stage:
     runs-on: eclipse-temurin:11
