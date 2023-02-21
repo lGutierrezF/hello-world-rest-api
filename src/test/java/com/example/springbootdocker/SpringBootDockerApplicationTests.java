@@ -25,7 +25,7 @@ class SpringBootDockerApplicationTests {
 	@Test
 	public void greetingShouldReturnDefaultMessage() throws Exception {
 		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
-				String.class)).contains("Hello Docker World");
+				String.class)).contains("Hello Kubernetes World");
 	}
 
 }

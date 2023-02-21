@@ -22,7 +22,7 @@ public class SpringBootDockerApplicationIT {
     @Test
     public void shouldReturnDefaultMessage() throws Exception {
         this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello Docker World")));
+                .andExpect(content().string(containsString("Hello Kubernetes World")));
     }
 
 }
