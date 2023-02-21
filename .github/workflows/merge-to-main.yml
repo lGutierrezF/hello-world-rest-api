@@ -1,4 +1,4 @@
-name: Merge to main branch2
+name: Merge to main branch
 run-name: Performing merge to main branch
 on:
   pull_request:
