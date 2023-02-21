@@ -24,3 +24,8 @@ jobs:
         with:
           push: true
           tags: lgutierrezfarinas/hello-world-rest-api:latest
+      - name: Update kubernetes deployment
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+      - run: kubectl run apirest --image=lgutierrezfarinas/hello-world-rest-api:latest --port=8080 --expose=true
